@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruthShield</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="icons/icon48.png" alt="TruthShield Logo" class="logo">
+            <h1>TruthShield</h1>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="analyze">Analyze</button>
+            <button class="tab-btn" data-tab="history">History</button>
+            <button class="tab-btn" data-tab="settings">Settings</button>
+        </div>
+        
+        <div class="tab-content active" id="analyze">
+            <textarea id="news-text" placeholder="Select text on a webpage and right-click to analyze, or paste news content here..."></textarea>
+            <button id="analyze-btn" class="primary-btn">Analyze Text</button>
+            
+            <div id="results" class="hidden">
+                <h2>Analysis Results</h2>
+                <div class="verdict-container">
+                    <div class="verdict-label">Verdict:</div>
+                    <div id="verdict-result" class="verdict"></div>
+                    <div id="confidence" class="confidence"></div>
+                </div>
+                
+                <div class="model-results">
+                    <div class="model-result">
+                        <div class="model-name">ML Model:</div>
+                        <div id="ml-result" class="model-verdict"></div>
+                    </div>
+                    <div class="model-result">
+                        <div class="model-name">AI Analysis:</div>
+                        <div id="ai-result" class="model-verdict"></div>
+                    </div>
+                </div>
+                
+                <div class="analysis-details">
+                    <h3>Analysis Details</h3>
+                    <div id="analysis-text"></div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="ask-question-btn" class="secondary-btn">Ask a Question</button>
+                    <button id="save-result-btn" class="secondary-btn">Save Result</button>
+                </div>
+                
+                <div id="question-section" class="hidden">
+                    <textarea id="question-text" placeholder="Ask a question about this news..."></textarea>
+                    <button id="submit-question-btn" class="primary-btn">Submit Question</button>
+                    <div id="question-answer" class="hidden"></div>
+                </div>
+            </div>
+            
+            <div id="loading" class="hidden">
+                <div class="loader"></div>
+                <p>Analyzing news content...</p>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="history">
+            <h2>Analysis History</h2>
+            <div id="history-list">
+                <p class="empty-message">No saved analyses yet.</p>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="settings">
+            <h2>Settings</h2>
+            
+            <div class="setting-group">
+                <h3>Analysis Options</h3>
+                <div class="setting">
+                    <label for="auto-ai-analysis">
+                        <input type="checkbox" id="auto-ai-analysis" checked>
+                        Automatically include AI analysis
+                    </label>
+                </div>
+                <div class="setting">
+                    <label for="min-confidence">
+                        Minimum confidence threshold: <span id="confidence-value">75</span>%
+                    </label>
+                    <input type="range" id="min-confidence" min="50" max="95" value="75" step="5">
+                </div>
+            </div>
+            
+            <div class="setting-group">
+                <h3>API Settings</h3>
+                <div class="setting">
+                    <label for="api-key">Groq API Key (optional):</label>
+                    <input type="password" id="api-key" placeholder="Enter your Groq API key">
+                    <p class="setting-note">Leave blank to use built-in analysis only</p>
+                </div>
+            </div>
+            
+            <button id="save-settings-btn" class="primary-btn">Save Settings</button>
+            <div id="settings-saved" class="hidden">Settings saved successfully!</div>
+        </div>
+        
+        <div class="footer">
+            <p>TruthShield &copy; 2025 | <a href="#" id="about-link">About</a></p>
+        </div>
+    </div>
+    
+    <div id="about-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>About TruthShield</h2>
+            <p>TruthShield is a browser extension that helps you identify potential fake news using machine learning and AI analysis.</p>
+            <p>Simply select text on any webpage, right-click, and choose "Analyze with TruthShield" to check if the content might be misleading.</p>
+            <p>Version 1.0.0</p>
+        </div>
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>
